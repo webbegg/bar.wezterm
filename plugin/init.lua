@@ -13,9 +13,9 @@ local config = {
   clock_icon = "󰃰",
   cwd_icon = "",
   enabled_modules = {
-    username = true,
-    hostname = true,
-    clock = true,
+    username = false,
+    hostname = false,
+    clock = false,
     cwd = true,
   },
 }
