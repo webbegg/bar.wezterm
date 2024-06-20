@@ -197,7 +197,7 @@ wez.on("update-status", function(window, pane)
     { Text = stat },
 
     { Foreground = { Color = palette.ansi[7] } },
-    { Text = "HEY" },
+    { Text = " " .. pane:get_title() .. " " },
     --{ Text = config.pane_icon .. " " .. pane:get_title() .. " " },
   })
 
