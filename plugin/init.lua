@@ -205,8 +205,15 @@ wez.on("update-status", function(window, pane)
   local os = require 'os'
 
   -- Function to get current git branch
-  local function get_git_branch()
-    local handle = io.popen('git rev-parse --abbrev-ref HEAD 2>/dev/null')
+  local function get_git_branch(pane)
+    local cwd_uri = pane:get_current_working_dir()
+    if not cwd_uri then
+      return nil
+    end
+    
+    local cwd = cwd_uri:sub(8)  -- strip 'file://'
+    local cmd = 'git -C ' .. cwd .. ' rev-parse --abbrev-ref HEAD 2>/dev/null'
+    local handle = io.popen(cmd)
     local branch = handle:read("*a")
     handle:close()
     branch = branch:gsub("\n", "")  -- remove trailing newline
@@ -251,7 +258,7 @@ wez.on("update-status", function(window, pane)
     table.insert(cells, { Text = cwd .. " " })
   end
 
-  local branch = get_git_branch()
+  local branch = get_git_branch(pane)
   if branch then
     table.insert(cells, { Foreground = { Color = palette.brights[1] } })
     table.insert(cells, {Text="🔀 " .. branch .. " "})
