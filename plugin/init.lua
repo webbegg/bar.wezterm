@@ -165,7 +165,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   end
 
   return {
-    { Background = { Color = "#1D2021" } }, --palette.tab_bar.background } },
+    { Background = { Color = "#1D2021" } }, --"#1D2021" } },
     { Foreground = { Color = fg } },
     { Text = title },
   }
@@ -192,7 +192,7 @@ wez.on("update-status", function(window, pane)
   end
 
   window:set_left_status(wez.format {
-    { Background = { Color = palette.tab_bar.background } },
+    { Background = { Color = "#1D2021" } },
     { Foreground = { Color = stat_fg } },
     { Text = stat },
 
@@ -202,7 +202,7 @@ wez.on("update-status", function(window, pane)
 
   -- right status
   local cells = {
-    { Background = { Color = palette.tab_bar.background } },
+    { Background = { Color = "#1D2021" } },
   }
   local enabled_modules = config.enabled_modules
 
