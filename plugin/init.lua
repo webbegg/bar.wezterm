@@ -16,7 +16,7 @@ local config = {
     username = false,
     hostname = false,
     clock = false,
-    cwd = true,
+    cwd = false,
   },
 }
 
@@ -201,6 +201,21 @@ wez.on("update-status", function(window, pane)
     -- { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
   })
 
+  local io = require 'io'
+  local os = require 'os'
+
+  -- Function to get current git branch
+  local function get_git_branch()
+    local handle = io.popen('git rev-parse --abbrev-ref HEAD 2>/dev/null')
+    local branch = handle:read("*a")
+    handle:close()
+    branch = branch:gsub("\n", "")  -- remove trailing newline
+    if branch == "" then
+      return nil
+    end
+    return branch
+  end
+
   -- right status
   local cells = {
     { Background = { Color = palette.tab_bar.background } },
@@ -234,6 +249,14 @@ wez.on("update-status", function(window, pane)
     table.insert(cells, { Text = config.cwd_icon .. " " })
     table.insert(cells, { Foreground = { Color = palette.ansi[7] } })
     table.insert(cells, { Text = cwd .. " " })
+  end
+
+  local branch = get_git_branch()
+  if branch then
+    table.insert(cells, { Foreground = { Color = palette.brights[1] } })
+    table.insert(cells, {Text="🔀 " .. branch .. " "})
+  else
+    table.insert(cells, {Text=""})
   end
 
   window:set_right_status(wez.format(cells))
