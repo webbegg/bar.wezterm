@@ -137,7 +137,7 @@ M.apply_to_config = function(c, opts)
     local scheme = wez.color.get_builtin_schemes()[c.color_scheme]
     c.colors = {
       tab_bar = {
-        background = "#1D2021", --scheme.background,
+        background = scheme.background,
       },
     }
   end
@@ -165,7 +165,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   end
 
   return {
-    { Background = { Color = "#1D2021" } }, --"#1D2021" } },
+    { Background = { Color = palette.tab_bar.background } },
     { Foreground = { Color = fg } },
     { Text = title },
   }
@@ -192,7 +192,7 @@ wez.on("update-status", function(window, pane)
   end
 
   window:set_left_status(wez.format {
-    { Background = { Color = "#1D2021" } },
+    { Background = { Color = palette.tab_bar.background } },
     { Foreground = { Color = stat_fg } },
     { Text = stat },
 
@@ -202,7 +202,7 @@ wez.on("update-status", function(window, pane)
 
   -- right status
   local cells = {
-    { Background = { Color = "#1D2021" } },
+    { Background = { Color = palette.tab_bar.background } },
   }
   local enabled_modules = config.enabled_modules
 
