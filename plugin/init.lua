@@ -137,7 +137,7 @@ M.apply_to_config = function(c, opts)
     local scheme = wez.color.get_builtin_schemes()[c.color_scheme]
     c.colors = {
       tab_bar = {
-        background = "#1D2121", --scheme.background,
+        background = "#1D2021", --scheme.background,
       },
     }
   end
