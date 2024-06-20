@@ -191,14 +191,15 @@ wez.on("update-status", function(window, pane)
     stat = " leader "
   end
 
-  -- window:set_left_status(wez.format {
-  --   { Background = { Color = palette.tab_bar.background } },
-  --   { Foreground = { Color = stat_fg } },
-  --   { Text = stat },
+  window:set_left_status(wez.format {
+    { Background = { Color = palette.tab_bar.background } },
+    { Foreground = { Color = stat_fg } },
+    -- { Text = stat },
+    { Text = " " .. config.workspace_icon .. " " },
 
-  --   { Foreground = { Color = palette.ansi[7] } },
-  --   { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
-  -- })
+    -- { Foreground = { Color = palette.ansi[7] } },
+    -- { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+  })
 
   -- right status
   local cells = {
