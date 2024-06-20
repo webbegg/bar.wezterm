@@ -183,7 +183,7 @@ wez.on("update-status", function(window, pane)
   local palette = conf.resolved_palette
 
   -- left status
-  local stat = " __" .. config.workspace_icon .. " " .. window:active_workspace() .. " "
+  local stat = " " .. config.workspace_icon .. " " .. window:active_workspace() .. " "
   local stat_fg = palette.foreground
 
   if window:leader_is_active() then
@@ -196,9 +196,8 @@ wez.on("update-status", function(window, pane)
     { Foreground = { Color = stat_fg } },
     { Text = stat },
 
-    { Foreground = { Color = palette.ansi[7] } },
-    { Text = " " .. pane:get_title() .. " " },
-    --{ Text = config.pane_icon .. " " .. pane:get_title() .. " " },
+    -- { Foreground = { Color = palette.ansi[7] } },
+    -- { Text = config.pane_icon .. " " .. pane:get_title() .. " " },
   })
 
   -- right status
