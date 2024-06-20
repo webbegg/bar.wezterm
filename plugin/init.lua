@@ -165,7 +165,7 @@ wez.on("format-tab-title", function(tab, _, _, conf, _, _)
   end
 
   return {
-    { Background = { Color = palette.tab_bar.background } },
+    { Background = { Color = "#1D2021" } }, --palette.tab_bar.background } },
     { Foreground = { Color = fg } },
     { Text = title },
   }
